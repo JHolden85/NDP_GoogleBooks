@@ -1,17 +1,13 @@
 const path = require("path");
 const router = require("express").Router();
-const bookRoutes = require("./books");
-const googleRoutes = require("./google");
+const bookRoute = require("./books");
+const googleRoute = require("./google");
 
-// Book routes
-router.use("/books", bookRoutes);
+router.use('/google', googleRoute);
+router.use('/books', bookRoute);
 
-// Google Routes
-router.use("/google", googleRoutes);
-
-// For anything else, render the html page
-router.use(function(req, res) {
-  res.sendFile(path.join(__dirname, "../../client/build/index.html"));
+router.use((req,res) => {
+  res.sendFile(path.join(__dirname, '../../react-frontend/build/index.html'));
 });
 
 module.exports = router;
