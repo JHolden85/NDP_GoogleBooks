@@ -1,29 +1,33 @@
-import React from "React";
-import './App.css';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import NavBar from "./components/NavBar";
+import Header from "./components/Header";
+import Wrapper from "./components/Wrapper";
 
-import {BrowserRouter as Router, Route} from 'react-router-dom';
-// Was 'Header'
-import Header from './components/Header'
-// Was 'Banner'
-import Banner from './components/Banner'
-// Was 'Search'
-import Search from './components/Search'
-// was 'Results'
-import Results from "./components/Results";
+import NoMatch from "./pages/NoMatch";
+import Search from "./pages/Search";
+import Saved from "./pages/Saved";
 
-function App() {
-  return (
-    <Router>
-      <div className="bg-gray-200 h-full min-h-screen p-4">
-        <Header/>
-        <Banner/>
-        <Route path="/search" path="/">
-          <Search/>
-          <Results/>
-        </Route>
-      </div>
-    </Router>
-  );
-}
+import "./App.css";
+
+class App extends Component {
+ 
+  render() {
+    return (
+      <Router>
+        <div>
+          <NavBar />
+          <Header />
+          <Wrapper>
+            <Route exact path="/" component={Search} />
+            <Route exact path="/search" component={Search} />
+            <Route exact path="/saved" component={Saved} />
+            <Route exact path="/noMatch" component={NoMatch} />
+          </Wrapper>
+        </div>
+      </Router>
+    )
+  };
+};
 
 export default App;
