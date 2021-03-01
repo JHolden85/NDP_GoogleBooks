@@ -1,40 +1,28 @@
-import React from "react";
-import { ListItem } from "../List";
-import { Row, Col } from "../Grid";
-import "./style.css";
+import React from 'react';
 
-function Book({ title, subtitle, authors, link, description, image, Button }) {
+const Book = (props) => {
   return (
-    <ListItem>
-      <Row className="flex-wrap-reverse">
-        <Col size="md-8">
-          <h3 className="font-italic">{title}</h3>
-          {subtitle && <h5 className="font-italic">{subtitle}</h5>}
-        </Col>
-        <Col size="md-4">
-          <div className="btn-container">
-            <a className="btn btn-light" target="_blank" rel="noopener noreferrer" href={link}>
-              View
-            </a>
-            <Button />
-          </div>
-        </Col>
-      </Row>
-      <Row>
-        <Col size="md-6">
-          <p className="font-italic small">Written by {authors}</p>
-        </Col>
-      </Row>
-      <Row>
-        <Col size="12 sm-4 md-2">
-          <img className="img-thumbnail img-fluid w-100" src={image} alt={title} />
-        </Col>
-        <Col size="12 sm-8 md-10">
-          <p>{description}</p>
-        </Col>
-      </Row>
-    </ListItem>
+    <div className="my-4 p-4 border border-black">
+      <div className="flex justify-between">
+        {/* Book Info */}
+        <div>
+          <h1 className="text-2xl">{props.title}</h1>
+          <h3 className="text-lg">{props.subtitle}</h3>
+          <h4 className="text-sm">Written By: {props.author}</h4>
+        </div>
+        {/* Buttons */}
+        <div>
+          <button className="px-2 py-1 m-2 border border-black">View</button>
+          <button className="px-2 py-1 m-2 border border-black">Save</button>
+        </div>
+      </div>
+
+      <div className="flex mt-4">
+        <img src={props.image} alt={props.title} className="border border-black w-1/5 h-full"/>
+        <h3 className="ml-4 w-full">{props.description}</h3>
+      </div>
+    </div>
   );
-}
+};
 
 export default Book;
